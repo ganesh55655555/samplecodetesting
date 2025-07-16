@@ -248,7 +248,7 @@ for acl in acls:
         "Owner ID": account_id
     })
 
-# ---------- Save to Single Excel Workbook ----------
+# ---------- Save to Excel ----------
 excel_path = f"aws_inventory_{timestamp}.xlsx"
 with ExcelWriter(excel_path, engine='xlsxwriter') as writer:
     pd.DataFrame(instances_data).to_excel(writer, sheet_name='EC2 Instances', index=False)
