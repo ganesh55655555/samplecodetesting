@@ -4,7 +4,7 @@ from datetime import datetime
 from pandas import ExcelWriter
 
 # ---------- Common Setup ----------
-session = boto3.Session(profile_name='default', region_name='ap-south-1')
+session = boto3.Session(region_name='ap-south-1')
 ec2_resource = session.resource('ec2')
 ec2_client = session.client('ec2')
 s3 = session.client('s3')
