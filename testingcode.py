@@ -3,14 +3,20 @@ import pandas as pd
 from datetime import datetime
 from pandas import ExcelWriter
 
-# ---------- Common Setup ----------
+# ---------- AWS Authentication via Environment Variables ----------
+sts = boto3.client('sts')
+account_id = sts.get_caller_identity()['Account']
+print(f"✅ Authenticated with Account ID: {account_id}")
+
+# ---------- AWS Service Clients ----------
 session = boto3.Session(region_name='ap-south-1')
 ec2_resource = session.resource('ec2')
 ec2_client = session.client('ec2')
 s3 = session.client('s3')
-sts = session.client('sts')
-account_id = sts.get_caller_identity()['Account']
+
+# ---------- Timestamp ----------
 timestamp = datetime.now().strftime('%Y-%m-%d')
+
 
 # ---------- Helper Maps ----------
 instance_name_map = {}
